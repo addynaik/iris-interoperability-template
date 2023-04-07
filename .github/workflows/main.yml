@@ -9,10 +9,22 @@ on:
       - master
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and Test
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          load: true
+          tags: ${{ github.repository }}:${{ github.sha }}
+          build-args: TESTS=1
   docker_build_push_acr:
     name: 'Docker Build and Push to ACR'
     runs-on: ubuntu-latest
-    environment: production
+    needs: build
   
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
