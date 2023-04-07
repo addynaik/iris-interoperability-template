@@ -1,4 +1,4 @@
-ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community
+ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community:2023.1.0.218.0
 FROM $IMAGE
 
 WORKDIR /home/irisowner/irisdev/
